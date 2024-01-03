@@ -1,0 +1,17 @@
+<h2>Dashboard</h2>
+
+<div class="container mx-2 p-2">
+    <%= "Welcome #{current_user.name}"%> <br>
+    <%= "Email: #{current_user.email}" %> <br>
+    <%= "Role: #{current_user.role}" %> <br>
+    <% if current_user.role=="Student"%>
+        <%= "Unique Id: #{current_user.unique_id}" %> <br>
+    <%else%>
+        <%= "Staff Id: #{current_user.unique_id}" %> <br>
+    <%end%>
+    
+    <%= "Department: #{current_user.department}" %> <br>
+    <br>
+    <%= button_to "Destroy Account", user_registration_path , method: :delete%><br>
+    <%= button_to "Log Out", destroy_user_session_path, method: :delete%>
+</div>
