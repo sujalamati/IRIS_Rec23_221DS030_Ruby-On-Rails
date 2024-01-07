@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    sessions: 'users/sessions'
-  }
+  resources :service_requests do
+    get 'available', on: :collection
+  end
+  resources :templates
+  devise_for :users, controllers: { registrations: 'users/registrations'}
   get '/' , to: "static_pages#index"
 
   root 'static_pages#index'

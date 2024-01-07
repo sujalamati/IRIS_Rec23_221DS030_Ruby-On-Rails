@@ -1,0 +1,25 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request: MyString
+  temp_id: 1
+  current_step: 1
+  applicant_name: MyString
+  unique_id: 1
+  dept: MyString
+  approval_status: MyString
+  approval_flow: MyString
+  field_name: MyString
+  field_response: MyString
+
+two:
+  request: MyString
+  temp_id: 1
+  current_step: 1
+  applicant_name: MyString
+  unique_id: 1
+  dept: MyString
+  approval_status: MyString
+  approval_flow: MyString
+  field_name: MyString
+  field_response: MyString

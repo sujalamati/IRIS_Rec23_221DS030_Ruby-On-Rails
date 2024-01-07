@@ -9,6 +9,9 @@ gem "rails", "~> 7.0.4"
 # Adding the devise gem for authentication
 gem "devise"
 
+# Adding the rolify gem to handle multiple roles
+gem "rolify"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
@@ -76,3 +79,5 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "pundit", "~> 2.3"

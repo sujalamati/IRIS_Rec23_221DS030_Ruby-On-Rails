@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Service requests</h1>
+
+<div id="service_requests">
+  <% @service_requests.each do |service_request| %>
+    <%= render service_request %>
+    <p>
+      <%= link_to "Show this service request", service_request %>
+    </p>
+  <% end %>
+  
+</div>
+
+<%= link_to "New service request", available_service_requests_path %>
+<br>
+<%= link_to "Back To Dashboard", root_path%>

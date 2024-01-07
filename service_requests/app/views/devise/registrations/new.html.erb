@@ -20,8 +20,21 @@
     </div>
 
     <div class="field">
-      <%= f.label :role %><br />
-      <%= f.text_field :role%>
+      Roles <br>
+      <%= f.check_box :role, {multiple: true}, "Admin",nil%>
+      Admin
+      <br>
+      <%= f.check_box :role, {multiple: true}, "MIS Officer",nil%>
+      MIS Officer
+      <br>
+      <%= f.check_box :role, {multiple: true}, "Student",nil%>
+      Student
+      <br>
+      <%= f.check_box :role, {multiple: true}, "Faculty Advisor",nil%>
+      Faculty Advisor
+      <br>
+      <%= f.check_box :role, {multiple: true}, "HoD",nil%>
+      HoD
     </div>
 
     <div class="field">

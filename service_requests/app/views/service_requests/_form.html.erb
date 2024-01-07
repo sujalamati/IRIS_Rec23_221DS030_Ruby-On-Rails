@@ -1,0 +1,70 @@
+<%= form_with(model: service_request) do |form| %>
+  <% if service_request.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(service_request.errors.count, "error") %> prohibited this service_request from being saved:</h2>
+
+      <ul>
+        <% service_request.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="container mx-2 p-2">
+    <div>
+      <%= form.label :request, style: "display: block" %>
+      <div class="container border col-2 mx-0 p-1">
+        <%= @template.name %>
+      </div>
+    </div>
+  
+    <div>
+      <%= form.label :applicant_name, style: "display: block" %>
+      <div class="container border col-2 mx-0 p-1">
+        <%= current_user.name %>
+      </div>
+    </div>
+  
+    <div>
+      Unique Id
+      <div class="container border col-2 mx-0 p-1">
+        <%= current_user.unique_id %>
+      </div>
+    </div>
+  
+    <div>
+      Department
+      <div class="container border col-2 mx-0 p-1">
+        <%= current_user.department %>
+      </div>
+    </div>
+  
+    <div>
+      <%= form.label :approval_flow, style: "display: block" %>
+      <% @template.approval_flow.split("_").each do |flow|%>
+        <%= flow+"->"%>
+      <%end%>
+    </div>
+  
+    <div>
+      <%=@template.field%><br>
+      <%= form.text_field :field_response %>
+    </div>
+  
+    <br>
+    <div>
+      <%= button_to "Submit", service_requests_path , params:{service_request:{request:@template.name,
+        current_step:1,
+        temp_id:@template.template_id,
+        applicant_name:current_user.name,
+        unique_id:current_user.unique_id,
+        dept:current_user.department,
+        approval_flow:@template.approval_flow,
+        approval_status:"nil",
+        field_name: @template.field
+      }}, method: :post %>
+    </div>
+  </div>
+    
+<% end %>
