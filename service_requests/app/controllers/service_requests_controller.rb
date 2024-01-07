@@ -6,6 +6,27 @@ class ServiceRequestsController < ApplicationController
     @service_requests = ServiceRequest.all
   end
 
+  # GET /service_requests/display_approvals
+  def display_approvals
+    @service_requests = ServiceRequest.all
+  end
+
+  def decision
+    @service_request= ServiceRequest.find(params[:id])
+    if params[:decision]=="Approved"
+      @service_request.current_step+=1
+      next_approver=@service_request.approval_flow.split("_")[@service_request.current_step-1]
+      if next_approver==nil
+        @service_request.approval_status="Approved"
+      end
+      @service_request.current_approver=next_approver
+    else
+      @service_request.current_step=1
+      next_approver=@service_request.approval_flow.split("_")[current_step-1]
+    end
+    @service_request.save
+  end
+
   # GET /service_requests/1 or /service_requests/1.json
   def show
   end
@@ -71,6 +92,6 @@ class ServiceRequestsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def service_request_params
-      params.require(:service_request).permit(:request, :temp_id, :current_step, :applicant_name, :unique_id, :dept, :approval_status, :approval_flow, :field_name, :field_response)
+      params.require(:service_request).permit(:request, :temp_id, :current_step, :applicant_name, :unique_id, :dept, :approval_status, :approval_flow, :field_name, :field_response, :current_approver)
     end
 end

@@ -1,9 +1,14 @@
 Rails.application.routes.draw do
   resources :service_requests do
     get 'available', on: :collection
+    get 'display_approvals', on: :collection
+    put 'decision' , on: :collection
   end
+
   resources :templates
+
   devise_for :users, controllers: { registrations: 'users/registrations'}
+
   get '/' , to: "static_pages#index"
 
   root 'static_pages#index'

@@ -62,7 +62,8 @@
         dept:current_user.department,
         approval_flow:@template.approval_flow,
         approval_status:"nil",
-        field_name: @template.field
+        field_name: @template.field,
+        current_approver: @template.approval_flow.split("_")[0]
       }}, method: :post %>
     </div>
   </div>

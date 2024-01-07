@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_080009) do
     t.string "approval_flow"
     t.string "field_name"
     t.string "field_response"
+    t.string "current_approver"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

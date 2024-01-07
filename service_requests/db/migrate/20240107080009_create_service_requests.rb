@@ -11,6 +11,7 @@ class CreateServiceRequests < ActiveRecord::Migration[7.0]
       t.string :approval_flow
       t.string :field_name
       t.string :field_response
+      t.string :current_approver
 
       t.timestamps
     end
