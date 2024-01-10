@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  step: 1
+  comments: MyString
+  decision: MyString
+  temp_id: 1
+
+two:
+  name: MyString
+  step: 1
+  comments: MyString
+  decision: MyString
+  temp_id: 1

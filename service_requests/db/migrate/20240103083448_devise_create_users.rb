@@ -5,11 +5,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[7.0]
     create_table :users do |t|
 
       ## Adding a few attributes for the service requests app
-      t.string :name 
-      t.string :department
-      t.string :unique_id   #this could be Staff Id or Student Id
+      t.string :name         #Name of user
+      t.string :department   #Department of user
+      t.integer :unique_id   #Staff Id or Student Id
       
-      t.string :role        # Ex: Student, FA, HOD, Admin
+      t.string :role         # Ex: Student, FA, HOD, Admin
 
 
 

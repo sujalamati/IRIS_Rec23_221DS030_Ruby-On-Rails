@@ -26,9 +26,14 @@ class TemplatesController < ApplicationController
   # POST /templates or /templates.json
   def create
     authorize @current_user , policy_class: UserPolicy
-    modified_template_params=template_params
-    modified_template_params[:approval_flow]=params[:approval_flow].join("_")
-    @template = Template.new(modified_template_params)
+    @template = Template.new(template_params)
+    i=1
+    params[:template][:approval_flow].each do |approver|
+      if approver!="_"
+        Approver.create(template:@template,name:approver,step:i)
+        i=i+1
+      end
+    end
 
     respond_to do |format|
       if @template.save

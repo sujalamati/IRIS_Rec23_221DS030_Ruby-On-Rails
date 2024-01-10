@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_07_080009) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_09_165623) do
+  create_table "approvers", force: :cascade do |t|
+    t.string "name"
+    t.integer "step"
+    t.string "comments"
+    t.string "decision"
+    t.integer "template_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -34,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_080009) do
     t.string "field_name"
     t.string "field_response"
     t.string "current_approver"
+    t.string "comments"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -44,6 +55,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_080009) do
     t.string "applicants"
     t.string "approval_flow"
     t.string "field"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -51,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_07_080009) do
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "department"
-    t.string "unique_id"
+    t.integer "unique_id"
     t.string "role"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
