@@ -59,9 +59,9 @@
         unique_id:current_user.unique_id,
         dept:current_user.department,
         approval_flow:@template.approval_flow,
-        approval_status:"nil",
+        approval_status:"Yet to be Approved",
         field_name: @template.field,
-        current_approver: @template.approval_flow.split("_")[0]
+        current_approver: @template.approvers[0].name
       }}, method: :post %>
     </div>
   </div>

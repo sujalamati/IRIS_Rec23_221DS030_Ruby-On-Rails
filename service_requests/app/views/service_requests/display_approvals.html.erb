@@ -2,19 +2,14 @@
 
 <div class="container mx-2 p-2">
     <% @service_requests.each do |req| %>
-        <% if ((current_user.has_role? req.current_approver) && (current_user.unique_id!=req.unique_id))%>
-            <%=render req%>
-            <div class="comments">
-                
+        <%=render req%>
+        <div class="btn-group">
+            <div class="btn btn-primary">
+                <%=button_to "Approve", decision_service_requests_path(:id => req.id, :decision=> "Approved"), method: :put%>
             </div>
-            <div class="btn-group">
-                <div class="btn btn-primary">
-                    <%=button_to "Approve", decision_service_requests_path(:id => req.id, :decision=> "Approved"), method: :put%>
-                </div>
-                <div class="btn btn-danger">
-                    <%=button_to "Reject" , decision_service_requests_path(:id=>req.id, :decision=>"Rejected") , method: :put%>
-                </div>
+            <div class="btn btn-danger">
+                <%=button_to "Reject" , decision_service_requests_path(:id=>req.id, :decision=>"Rejected") , method: :put%>
             </div>
-        <%end%>
+        </div>
     <%end%>
 </div>

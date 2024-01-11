@@ -10,23 +10,35 @@ class ServiceRequestsController < ApplicationController
   # GET /service_requests/display_approvals
   def display_approvals
     #Display those service requests that require the User's Approval
-    @service_requests = ServiceRequest.all
+    @service_requests = ServiceRequest.where(current_approver:current_user.roles_name).where.not(unique_id:current_user.unique_id)
   end
 
   def decision
     @service_request= ServiceRequest.find(params[:id])
+    unless (@service_request.unique_id!=current_user.unique_id) & (current_user.roles_name.include?@service_request.current_approver)
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
+
     if params[:decision]=="Approved"
       @service_request.current_step+=1
-      next_approver=@service_request.approval_flow.split("_")[@service_request.current_step-1]
+      @template=Template.find_by(template_id:@service_request.temp_id)
+      next_approver=Approver.find_by(step:@service_request.current_step,template_id:@template.id)
       if next_approver==nil
         @service_request.approval_status="Approved"
+      else
+        next_approver=next_approver.name
       end
-      @service_request.current_approver=next_approver
+
     else
       @service_request.current_step=1
-      next_approver=@service_request.approval_flow.split("_")[current_step-1]
+      @template=Template.find_by(template_id:@service_request.temp_id)
+      next_approver=Approver.find_by(step:1,template_id:@template.id)
     end
+
+    @service_request.current_approver=next_approver
     @service_request.save
+    redirect_to display_approvals_service_requests_path
   end
 
   # GET /service_requests/1 or /service_requests/1.json
