@@ -1,14 +1,9 @@
 <h1>Service requests you can apply</h1>
 
 
-<div class="container">
+<div class="container mx-2 p-2">
     <% @templates.each do |template| %>
-        <% current_user.roles_name.each do |rol|%>
-            <% if template.applicants.include? rol %>
-                <%= link_to template.name , new_service_request_path(:temp_id => template.template_id) %>
-                <br>
-                <% break %>
-            <% end %>
-        <%end %>
+        <%= link_to template.name , new_service_request_path(:temp_id => template.template_id) %>
+        <br>
     <%end%>
 </div>

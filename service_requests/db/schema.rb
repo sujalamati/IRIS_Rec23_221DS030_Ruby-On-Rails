@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_09_165623) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_10_164949) do
+  create_table "applicants", force: :cascade do |t|
+    t.string "name"
+    t.string "resource_type"
+    t.integer "resource_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name", "resource_type", "resource_id"], name: "index_applicants_on_name_and_resource_type_and_resource_id"
+    t.index ["name"], name: "index_applicants_on_name"
+    t.index ["resource_type", "resource_id"], name: "index_applicants_on_resource"
+  end
+
   create_table "approvers", force: :cascade do |t|
     t.string "name"
     t.integer "step"
@@ -59,6 +70,14 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_09_165623) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "templates_applicants", id: false, force: :cascade do |t|
+    t.integer "template_id"
+    t.integer "applicant_id"
+    t.index ["applicant_id"], name: "index_templates_applicants_on_applicant_id"
+    t.index ["template_id", "applicant_id"], name: "index_templates_applicants_on_template_id_and_applicant_id"
+    t.index ["template_id"], name: "index_templates_applicants_on_template_id"
   end
 
   create_table "users", force: :cascade do |t|

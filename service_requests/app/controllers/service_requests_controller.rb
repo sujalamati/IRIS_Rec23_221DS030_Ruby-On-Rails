@@ -3,11 +3,13 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests or /service_requests.json
   def index
-    @service_requests = ServiceRequest.all
+    #Display the service requests that the User has applied for
+    @service_requests = ServiceRequest.where(unique_id:current_user.unique_id)
   end
 
   # GET /service_requests/display_approvals
   def display_approvals
+    #Display those service requests that require the User's Approval
     @service_requests = ServiceRequest.all
   end
 
@@ -33,13 +35,23 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/available
   def available
-    @templates=Template.all
+    applicants=Applicant.where(name:current_user.roles_name)
+    template_ids=[]
+    applicants.each do |applicant|
+      template_ids.append(applicant.template_ids)
+    end
+    template_ids= template_ids.to_set
+    @templates=Template.where(id:template_ids)
   end
 
   # GET /service_requests/new
   def new
-    @service_request = ServiceRequest.new
     @template=Template.find_by(template_id: params[:temp_id])
+    unless @template.roles_name.intersect?(current_user.roles_name)
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
+    @service_request = ServiceRequest.new
   end
 
   # GET /service_requests/1/edit

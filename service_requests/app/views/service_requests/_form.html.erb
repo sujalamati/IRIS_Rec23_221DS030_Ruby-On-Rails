@@ -42,9 +42,7 @@
   
     <div>
       <%= form.label :approval_flow, style: "display: block" %>
-      <% @template.approval_flow.split("_").each do |flow|%>
-        <%= flow+"->"%>
-      <%end%>
+      <%= @template.approval_flow%>
     </div>
   
     <div>

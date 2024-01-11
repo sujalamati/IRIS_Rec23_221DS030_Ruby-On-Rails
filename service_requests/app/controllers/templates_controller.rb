@@ -35,6 +35,10 @@ class TemplatesController < ApplicationController
       end
     end
 
+    params[:template][:applicants].each do |rol|
+      @template.add_role rol
+    end
+
     respond_to do |format|
       if @template.save
         format.html { redirect_to template_url(@template), notice: "Template was successfully created." }
@@ -50,9 +54,7 @@ class TemplatesController < ApplicationController
   def update
     authorize @current_user , policy_class: UserPolicy
     respond_to do |format|
-      modified_template_params=template_params
-      modified_template_params[:approval_flow]=modified_template_params[:approval_flow].join("_")
-      if @template.update(modified_template_params)
+      if @template.update(template_params)
         format.html { redirect_to template_url(@template), notice: "Template was successfully updated." }
         format.json { render :show, status: :ok, location: @template }
       else
