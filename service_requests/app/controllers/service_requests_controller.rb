@@ -1,5 +1,6 @@
 class ServiceRequestsController < ApplicationController
   before_action :set_service_request, only: %i[ show edit update destroy ]
+  before_action :set_template, only: %i[ new edit ]
 
   # GET /service_requests or /service_requests.json
   def index
@@ -13,6 +14,7 @@ class ServiceRequestsController < ApplicationController
     @service_requests = ServiceRequest.where(current_approver:current_user.roles_name).where.not(unique_id:current_user.unique_id)
   end
 
+  # PUT /service_requests/decision/id?decision?
   def decision
     @service_request= ServiceRequest.find(params[:id])
     unless (@service_request.unique_id!=current_user.unique_id) & (current_user.roles_name.include?@service_request.current_approver)
@@ -20,6 +22,7 @@ class ServiceRequestsController < ApplicationController
       redirect_to root_path
     end
 
+    #If the Current Approver has approved the step is inc & nxt approver is updated
     if params[:decision]=="Approved"
       @service_request.current_step+=1
       @template=Template.find_by(template_id:@service_request.temp_id)
@@ -29,11 +32,12 @@ class ServiceRequestsController < ApplicationController
       else
         next_approver=next_approver.name
       end
-
+    
+    #if the request is rejected , then update the status as "Rejected"
     else
-      @service_request.current_step=1
-      @template=Template.find_by(template_id:@service_request.temp_id)
-      next_approver=Approver.find_by(step:1,template_id:@template.id)
+      @service_request.current_step=0
+      next_approver=nil
+      @service_request.approval_status="Rejected"
     end
 
     @service_request.current_approver=next_approver
@@ -43,6 +47,7 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/1 or /service_requests/1.json
   def show
+
   end
 
   # GET /service_requests/available
@@ -58,7 +63,7 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/new
   def new
-    @template=Template.find_by(template_id: params[:temp_id])
+    
     unless @template.roles_name.intersect?(current_user.roles_name)
       flash[:error]="access denied"
       redirect_to root_path
@@ -68,6 +73,10 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/1/edit
   def edit
+    unless @service_request.approval_status=="Rejected" && @service_request.unique_id==current_user.unique_id
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
   end
 
   # POST /service_requests or /service_requests.json
@@ -87,6 +96,11 @@ class ServiceRequestsController < ApplicationController
 
   # PATCH/PUT /service_requests/1 or /service_requests/1.json
   def update
+    unless @service_request.approval_status=="Rejected" && @service_request.unique_id==current_user.unique_id
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
+
     respond_to do |format|
       if @service_request.update(service_request_params)
         format.html { redirect_to service_request_url(@service_request), notice: "Service request was successfully updated." }
@@ -100,6 +114,10 @@ class ServiceRequestsController < ApplicationController
 
   # DELETE /service_requests/1 or /service_requests/1.json
   def destroy
+    unless @service_request.unique_id==current_user.unique_id
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
     @service_request.destroy
 
     respond_to do |format|
@@ -117,5 +135,9 @@ class ServiceRequestsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def service_request_params
       params.require(:service_request).permit(:request, :temp_id, :current_step, :applicant_name, :unique_id, :dept, :approval_status, :approval_flow, :field_name, :field_response, :current_approver)
+    end
+
+    def set_template
+      @template=Template.find_by(template_id: params[:temp_id])
     end
 end

@@ -16,13 +16,18 @@
       <%= form.label :request, style: "display: block" %>
       <div class="container border col-2 mx-0 p-1">
         <%= @template.name %>
+        <%= hidden_field_tag "service_request[request]", @template.name %>
       </div>
     </div>
   
+    <%= hidden_field_tag "service_request[temp_id]", @template.template_id %>
+
     <div>
       <%= form.label :applicant_name, style: "display: block" %>
       <div class="container border col-2 mx-0 p-1">
         <%= current_user.name %>
+        <%= hidden_field_tag "service_request[applicant_name]", current_user.name %>
+
       </div>
     </div>
   
@@ -30,6 +35,7 @@
       Unique Id
       <div class="container border col-2 mx-0 p-1">
         <%= current_user.unique_id %>
+        <%= hidden_field_tag "service_request[unique_id]", current_user.unique_id %>
       </div>
     </div>
   
@@ -37,32 +43,31 @@
       Department
       <div class="container border col-2 mx-0 p-1">
         <%= current_user.department %>
+        <%= hidden_field_tag "service_request[dept]", current_user.department %>
       </div>
     </div>
   
     <div>
       <%= form.label :approval_flow, style: "display: block" %>
       <%= @template.approval_flow%>
+      <%= hidden_field_tag "service_request[approval_flow]", @template.approval_flow %>
     </div>
   
+    <%= hidden_field_tag "service_request[current_approver]",  @template.approvers[0].name%>
+
+    <%= hidden_field_tag "service_request[approval_status]", "Yet to be Approved" %>
+    
+    <%= hidden_field_tag "service_request[current_step]", 1%>
+
     <div>
       <%=@template.field%><br>
+      <%= hidden_field_tag "service_request[field_name]", @template.field %>
       <%= form.text_field :field_response %>
     </div>
   
     <br>
     <div>
-      <%= button_to "Submit", service_requests_path , params:{service_request:{request:@template.name,
-        current_step:1,
-        temp_id:@template.template_id,
-        applicant_name:current_user.name,
-        unique_id:current_user.unique_id,
-        dept:current_user.department,
-        approval_flow:@template.approval_flow,
-        approval_status:"Yet to be Approved",
-        field_name: @template.field,
-        current_approver: @template.approvers[0].name
-      }}, method: :post %>
+      <%= form.submit %>
     </div>
   </div>
     
