@@ -37536,3 +37536,206 @@ Processing by StaticPagesController#index as HTML
 Completed 200 OK in 50ms (Views: 39.2ms | ActiveRecord: 1.4ms | Allocations: 12238)
 
 
+Started GET "/service_requests" for ::1 at 2024-01-14 00:07:37 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 2210566]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 76)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 8.1ms | Allocations: 4153)
+  Rendered layout layouts/application.html.erb (Duration: 12.7ms | Allocations: 6728)
+Completed 200 OK in 29ms (Views: 13.9ms | ActiveRecord: 0.8ms | Allocations: 13436)
+
+
+Started GET "/service_requests/20/edit" for ::1 at 2024-01-14 00:07:39 +0530
+Processing by ServiceRequestsController#edit as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.5ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:132:in `set_service_request'
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:141:in `set_template'
+Redirected to http://localhost:3000/
+Completed 302 Found in 23ms (ActiveRecord: 1.4ms | Allocations: 6611)
+
+
+Started GET "/" for ::1 at 2024-01-14 00:07:39 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.9ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 26.1ms | Allocations: 6997)
+  Rendered layout layouts/application.html.erb (Duration: 37.3ms | Allocations: 9580)
+Completed 200 OK in 47ms (Views: 40.2ms | ActiveRecord: 1.2ms | Allocations: 11713)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-14 00:07:48 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 2210566]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 39)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 806)
+  Rendered layout layouts/application.html.erb (Duration: 10.8ms | Allocations: 3182)
+Completed 200 OK in 18ms (Views: 11.6ms | ActiveRecord: 0.4ms | Allocations: 4880)
+
+
+Started GET "/service_requests/20" for ::1 at 2024-01-14 00:07:53 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:132:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 2.0ms | Allocations: 403)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 2812)
+Completed 200 OK in 17ms (Views: 11.2ms | ActiveRecord: 0.3ms | Allocations: 4813)
+
+
+Started GET "/service_requests/20" for ::1 at 2024-01-14 00:08:42 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:135:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 73)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 641)
+  Rendered layout layouts/application.html.erb (Duration: 6.9ms | Allocations: 3181)
+Completed 200 OK in 36ms (Views: 8.5ms | ActiveRecord: 2.4ms | Allocations: 15206)
+
+
+Started GET "/service_requests/20" for ::1 at 2024-01-14 00:08:44 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:135:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 384)
+  Rendered layout layouts/application.html.erb (Duration: 5.9ms | Allocations: 2795)
+Completed 200 OK in 25ms (Views: 6.6ms | ActiveRecord: 0.3ms | Allocations: 5000)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-14 00:08:46 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 2210566]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 2.7ms | Allocations: 880)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 3282)
+Completed 200 OK in 15ms (Views: 8.7ms | ActiveRecord: 0.5ms | Allocations: 4840)
+
+
+Started GET "/" for ::1 at 2024-01-14 00:08:48 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 17.0ms | Allocations: 7542)
+  Rendered layout layouts/application.html.erb (Duration: 22.2ms | Allocations: 10122)
+Completed 200 OK in 30ms (Views: 24.3ms | ActiveRecord: 1.3ms | Allocations: 12247)
+
+
+Started GET "/service_requests/20/edit" for 127.0.0.1 at 2024-01-14 00:08:53 +0530
+Processing by ServiceRequestsController#edit as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:135:in `set_service_request'
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" IS NULL LIMIT ?[0m  [["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:144:in `set_template'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 21ms (ActiveRecord: 1.3ms | Allocations: 5945)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-14 00:08:53 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.7ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 2]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1673)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | Allocations: 4158)
+Completed 200 OK in 25ms (Views: 15.7ms | ActiveRecord: 1.2ms | Allocations: 5792)
+
+
+Started GET "/service_requests/20/" for 127.0.0.1 at 2024-01-14 00:08:59 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"20"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 20], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:135:in `set_service_request'
+Redirected to http://127.0.0.1:3000/
+Completed 302 Found in 7ms (ActiveRecord: 0.3ms | Allocations: 1908)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-14 00:08:59 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 2]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 7.1ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 13.3ms | Allocations: 3973)
+Completed 200 OK in 19ms (Views: 13.8ms | ActiveRecord: 0.6ms | Allocations: 5485)
+
+
+Started GET "/" for ::1 at 2024-01-14 00:18:34 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.8ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 21.9ms | Allocations: 6955)
+  Rendered layout layouts/application.html.erb (Duration: 36.3ms | Allocations: 9577)
+Completed 200 OK in 60ms (Views: 37.7ms | ActiveRecord: 1.8ms | Allocations: 15559)
+
+
+Started GET "/templates" for ::1 at 2024-01-14 00:18:51 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 1]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/_template.html.erb (Duration: 0.2ms | Allocations: 55)
+  Rendered templates/_template.html.erb (Duration: 0.1ms | Allocations: 25)
+  Rendered templates/index.html.erb within layouts/application (Duration: 8.3ms | Allocations: 3528)
+  Rendered layout layouts/application.html.erb (Duration: 12.9ms | Allocations: 6099)
+Completed 200 OK in 35ms (Views: 13.9ms | ActiveRecord: 1.1ms | Allocations: 12190)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-14 00:22:57 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 2]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 7.7ms | Allocations: 1659)
+  Rendered layout layouts/application.html.erb (Duration: 14.9ms | Allocations: 4044)
+Completed 200 OK in 22ms (Views: 15.7ms | ActiveRecord: 0.6ms | Allocations: 5713)
+
+

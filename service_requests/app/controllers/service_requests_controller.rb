@@ -47,7 +47,11 @@ class ServiceRequestsController < ApplicationController
 
   # GET /service_requests/1 or /service_requests/1.json
   def show
-
+    #show the service request only if it belongs to the user
+    unless @service_request.unique_id==current_user.unique_id
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
   end
 
   # GET /service_requests/available
@@ -81,6 +85,12 @@ class ServiceRequestsController < ApplicationController
 
   # POST /service_requests or /service_requests.json
   def create
+    #allow only the applicants to apply for the service request
+    unless @template.roles_name.intersect?(current_user.roles_name)
+      flash[:error]="access denied"
+      redirect_to root_path
+    end
+
     @service_request = ServiceRequest.new(service_request_params)
 
     respond_to do |format|
