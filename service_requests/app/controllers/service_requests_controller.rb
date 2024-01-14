@@ -85,6 +85,7 @@ class ServiceRequestsController < ApplicationController
 
   # POST /service_requests or /service_requests.json
   def create
+    @template=Template.find_by(template_id:params[:service_request][:temp_id])
     #allow only the applicants to apply for the service request
     unless @template.roles_name.intersect?(current_user.roles_name)
       flash[:error]="access denied"
