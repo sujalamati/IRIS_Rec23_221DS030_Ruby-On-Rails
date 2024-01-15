@@ -115,7 +115,7 @@ If you want to copy and customize the app with changes that are only useful for 
 To clone:
 
 <pre>
-$ git clone git://github.com/RailsApps/rails-devise-pundit.git
+$ git clone https://github.com/sujalamati/IRIS_Rec23_221DS030_Ruby-On-Rails
 </pre>
 
 You'll need [git](http://git-scm.com/) on your machine. See [Rails and Git](http://railsapps.github.io/rails-git.html).
