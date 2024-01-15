@@ -167,3 +167,29 @@ You should see a home page.
 You should be able to click the navigation links for "Log in" and "Sign up."
 
 Stop the server with Control-C. If you test the app by starting the web server and then leave the server running while you install new gems, you’ll have to restart the server to see any changes. The same is true for changes to configuration files in the config folder. This can be confusing to new Rails developers because you can change files in the app folders without restarting the server. Stop the server each time after testing and you will avoid this issue.
+
+# List of Implemented features
+* User Authentication using devise gem
+* Role based access control using Rolify and Pundit gems
+* Admin can create Custom Request Templates having role based approval flows
+* Applicants can apply to these Templates
+* The Approvers can approve or reject the service request
+* An option to send back the request application to the applicant for making changes.
+
+# List of Non-Implemented/ Planned features
+* Style the application using Bootstrap.
+* Allow the admin to manage user roles, rather than allowing the user to choose their own roles.
+* Implement Application Start and End time.
+* What actions can the approvers take(approve/reject/forward)
+* Limit on the number of applications from a single user.
+* Allow for the forwarder/approver to comment on the request made by the applicant.
+* Allow for user-based approval flow. In case of a request being forwarded to a HoD, you would want the request to be accessible only to the HoD of the applicant’s department.
+
+# List of known bugs
+* Admin cannot edit the request template after it has been created
+
+## References used 
+* [IRIS RoR Bootcamp 2022](https://github.com/sujalamati/IRIS-RoR-Bootcamp-2022/)
+* https://guides.railsgirls.com/devise
+* [RailsApp](https://railsapps.github.io/rails-authorization.html#:~:text=Authorization%20is%20a%20requirement%20for,may%20be%20all%20you%20need.)
+* https://guides.rubyonrails.org/
