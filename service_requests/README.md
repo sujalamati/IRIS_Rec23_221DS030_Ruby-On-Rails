@@ -13,6 +13,9 @@ The application uses
 * [Pundit](https://github.com/elabs/pundit) for authorization
 * [Bootstrap](http://getbootstrap.com/) front-end framework
 
+### Demo Video
+
+Here is the link to the Demo Video https://youtu.be/bdH9Fa6wplA showcasing all features of the project
 
 # Dependencies
 

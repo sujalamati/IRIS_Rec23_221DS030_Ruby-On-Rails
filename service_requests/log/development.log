@@ -39828,3 +39828,2291 @@ Completed 200 OK in 4ms (Views: 3.6ms | ActiveRecord: 0.0ms | Allocations: 4218)
   [1m[36mTRANSACTION (4.5ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests"[0m
   [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+Started GET "/" for ::1 at 2024-01-15 01:29:43 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 16ms (ActiveRecord: 0.0ms | Allocations: 2581)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:29:43 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.9ms | Allocations: 737)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 17.4ms | Allocations: 3941)
+  Rendered layout layouts/application.html.erb (Duration: 93.9ms | Allocations: 25495)
+Completed 200 OK in 130ms (Views: 102.5ms | ActiveRecord: 1.6ms | Allocations: 36068)
+
+
+Started GET "/users/sign_up" for ::1 at 2024-01-15 01:29:51 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.2ms | Allocations: 218)
+  Rendered devise/shared/_links.html.erb (Duration: 0.8ms | Allocations: 150)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 8.3ms | Allocations: 3605)
+  Rendered layout layouts/application.html.erb (Duration: 14.8ms | Allocations: 6163)
+Completed 200 OK in 20ms (Views: 18.1ms | ActiveRecord: 0.0ms | Allocations: 7710)
+
+
+Started POST "/users" for ::1 at 2024-01-15 01:30:13 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "name"=>"Sujal Sunil Amati", "unique_id"=>"2210566", "role"=>["Admin"], "department"=>"Admin", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sujalamati.221ds030@nitk.edu.in"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (1.1ms)[0m  [1m[32mINSERT INTO "users" ("name", "department", "unique_id", "role", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sujal Sunil Amati"], ["department", "Admin"], ["unique_id", 2210566], ["role", "[\"Admin\"]"], ["email", "sujalamati.221ds030@nitk.edu.in"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-01-14 20:00:14.156424"], ["updated_at", "2024-01-14 20:00:14.156424"]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (3.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+Redirected to http://[::1]:3000/
+  [1m[36mRole Load (0.5ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."name" = ? AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL ORDER BY "roles"."id" ASC LIMIT ?[0m  [["name", "Admin"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mRole Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 7], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mCACHE Role Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 7], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mUser::HABTM_Roles Create (0.4ms)[0m  [1m[32mINSERT INTO "users_roles" ("user_id", "role_id") VALUES (?, ?)[0m  [["user_id", 7], ["role_id", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (4.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+Completed 303 See Other in 281ms (ActiveRecord: 11.9ms | Allocations: 26282)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:30:14 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 6.8ms | Allocations: 2493)
+  Rendered layout layouts/application.html.erb (Duration: 9.3ms | Allocations: 5104)
+Completed 200 OK in 16ms (Views: 13.2ms | ActiveRecord: 0.3ms | Allocations: 7441)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 01:30:16 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 197)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 01:30:16 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.6ms | Allocations: 1245)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 3624)
+Completed 200 OK in 12ms (Views: 10.9ms | ActiveRecord: 0.0ms | Allocations: 4274)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2024-01-15 01:30:19 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.1ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 78)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 10.4ms | Allocations: 2231)
+  Rendered layout layouts/application.html.erb (Duration: 21.3ms | Allocations: 4609)
+Completed 200 OK in 25ms (Views: 22.5ms | ActiveRecord: 0.0ms | Allocations: 5237)
+
+
+Started POST "/users" for 127.0.0.1 at 2024-01-15 01:30:34 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujal5amati@gmail.com", "name"=>"SujalAmati", "unique_id"=>"", "department"=>"", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "sujal5amati@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.6ms | Allocations: 498)
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 78)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 7.3ms | Allocations: 3268)
+  Rendered layout layouts/application.html.erb (Duration: 11.9ms | Allocations: 5645)
+Completed 500 Internal Server Error in 19ms (Views: 12.3ms | ActiveRecord: 0.4ms | Allocations: 10697)
+
+
+  
+NoMethodError (undefined method `each' for nil:NilClass
+
+    params[:user][:role].each do |rol|
+                        ^^^^^):
+  
+app/controllers/users/registrations_controller.rb:15:in `create'
+Started GET "/" for 127.0.0.1 at 2024-01-15 01:30:40 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 342)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 01:30:40 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 132)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1263)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 3782)
+Completed 200 OK in 11ms (Views: 9.8ms | ActiveRecord: 0.0ms | Allocations: 4453)
+
+
+Started GET "/users/sign_up" for 127.0.0.1 at 2024-01-15 01:30:43 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 78)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 4.7ms | Allocations: 2230)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 4608)
+Completed 200 OK in 11ms (Views: 10.2ms | ActiveRecord: 0.0ms | Allocations: 5222)
+
+
+Started POST "/users" for 127.0.0.1 at 2024-01-15 01:31:07 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"foo.bar@gmail.com", "name"=>"Foo Bar", "unique_id"=>"22190", "role"=>["Student"], "department"=>"MACS", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo.bar@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "department", "unique_id", "role", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Foo Bar"], ["department", "MACS"], ["unique_id", 22190], ["role", "[\"Student\"]"], ["email", "foo.bar@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-01-14 20:01:07.367167"], ["updated_at", "2024-01-14 20:01:07.367167"]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+Redirected to http://127.0.0.1:3000/
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."name" = ? AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL ORDER BY "roles"."id" ASC LIMIT ?[0m  [["name", "Student"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mRole Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 8], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mCACHE Role Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 8], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mUser::HABTM_Roles Create (0.4ms)[0m  [1m[32mINSERT INTO "users_roles" ("user_id", "role_id") VALUES (?, ?)[0m  [["user_id", 8], ["role_id", 2]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+Completed 303 See Other in 220ms (ActiveRecord: 9.6ms | Allocations: 8863)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 01:31:07 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 8]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1599)
+  Rendered layout layouts/application.html.erb (Duration: 6.5ms | Allocations: 3986)
+Completed 200 OK in 10ms (Views: 6.8ms | ActiveRecord: 0.3ms | Allocations: 5507)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:31:16 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 13ms (ActiveRecord: 0.2ms | Allocations: 5112)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:31:16 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 307)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:31:16 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1274)
+  Rendered layout layouts/application.html.erb (Duration: 8.2ms | Allocations: 3797)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.0ms | Allocations: 4456)
+
+
+Started GET "/users/sign_up" for ::1 at 2024-01-15 01:31:18 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 78)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.9ms | Allocations: 2230)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 4608)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms | Allocations: 5225)
+
+
+Started POST "/users" for ::1 at 2024-01-15 01:31:37 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "name"=>"Madhusudhan", "unique_id"=>"234", "role"=>["HoD"], "department"=>"MACS", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "department", "unique_id", "role", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Madhusudhan"], ["department", "MACS"], ["unique_id", 234], ["role", "[\"HoD\"]"], ["email", "hod.macs@nitk.in"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-01-14 20:01:37.974654"], ["updated_at", "2024-01-14 20:01:37.974654"]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+Redirected to http://[::1]:3000/
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."name" = ? AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL ORDER BY "roles"."id" ASC LIMIT ?[0m  [["name", "HoD"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mRole Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 9], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mCACHE Role Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 9], ["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mUser::HABTM_Roles Create (0.3ms)[0m  [1m[32mINSERT INTO "users_roles" ("user_id", "role_id") VALUES (?, ?)[0m  [["user_id", 9], ["role_id", 4]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (3.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+Completed 303 See Other in 213ms (ActiveRecord: 8.5ms | Allocations: 8777)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:31:38 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1597)
+  Rendered layout layouts/application.html.erb (Duration: 8.1ms | Allocations: 3984)
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.3ms | Allocations: 5530)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:31:47 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 5ms (ActiveRecord: 0.1ms | Allocations: 1737)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:31:47 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 244)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:31:47 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 3587)
+Completed 200 OK in 8ms (Views: 5.9ms | ActiveRecord: 0.0ms | Allocations: 4203)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:31:50 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1204)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 3581)
+Completed 200 OK in 16ms (Views: 14.0ms | ActiveRecord: 0.0ms | Allocations: 4185)
+
+
+Started GET "/users/sign_up" for ::1 at 2024-01-15 01:32:16 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 0.0ms | Allocations: 14)
+  Rendered devise/shared/_links.html.erb (Duration: 0.1ms | Allocations: 78)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 2.8ms | Allocations: 2229)
+  Rendered layout layouts/application.html.erb (Duration: 5.1ms | Allocations: 4606)
+Completed 200 OK in 7ms (Views: 5.9ms | ActiveRecord: 0.0ms | Allocations: 5222)
+
+
+Started POST "/users" for ::1 at 2024-01-15 01:32:31 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"fa.macs@nitk.edu.in", "name"=>"Sam Johnson", "unique_id"=>"678900", "role"=>["Faculty Advisor"], "department"=>"MACS", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "fa.macs@nitk.edu.in"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "department", "unique_id", "role", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Sam Johnson"], ["department", "MACS"], ["unique_id", 678900], ["role", "[\"Faculty Advisor\"]"], ["email", "fa.macs@nitk.edu.in"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-01-14 20:02:31.496285"], ["updated_at", "2024-01-14 20:02:31.496285"]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (17.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+Redirected to http://[::1]:3000/
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."name" = ? AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL ORDER BY "roles"."id" ASC LIMIT ?[0m  [["name", "Faculty Advisor"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mRole Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 10], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mCACHE Role Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 10], ["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mUser::HABTM_Roles Create (1.0ms)[0m  [1m[32mINSERT INTO "users_roles" ("user_id", "role_id") VALUES (?, ?)[0m  [["user_id", 10], ["role_id", 3]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+Completed 303 See Other in 247ms (ActiveRecord: 22.9ms | Allocations: 8537)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:32:31 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 21.6ms | Allocations: 4017)
+Completed 200 OK in 28ms (Views: 23.9ms | ActiveRecord: 0.4ms | Allocations: 5556)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:32:40 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 8ms (ActiveRecord: 0.2ms | Allocations: 1755)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:32:40 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 13ms (ActiveRecord: 0.0ms | Allocations: 247)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:32:40 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.6ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 11.7ms | Allocations: 3587)
+Completed 200 OK in 13ms (Views: 12.5ms | ActiveRecord: 0.0ms | Allocations: 4183)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 01:32:44 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "sujalamati.221ds030@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 290ms (ActiveRecord: 0.5ms | Allocations: 5418)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:32:45 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.3ms | Allocations: 1790)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4319)
+Completed 200 OK in 12ms (Views: 8.9ms | ActiveRecord: 0.3ms | Allocations: 5897)
+
+
+Started GET "/templates" for ::1 at 2024-01-15 01:32:48 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1128)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3732)
+Completed 200 OK in 46ms (Views: 10.3ms | ActiveRecord: 0.6ms | Allocations: 10092)
+
+
+Started GET "/templates/new" for ::1 at 2024-01-15 01:32:50 +0530
+Processing by TemplatesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:8:in `new?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/new.html.erb within layouts/application
+  Rendered templates/_form.html.erb (Duration: 4.6ms | Allocations: 3808)
+  Rendered templates/new.html.erb within layouts/application (Duration: 7.1ms | Allocations: 4114)
+  Rendered layout layouts/application.html.erb (Duration: 9.7ms | Allocations: 6617)
+Completed 200 OK in 25ms (Views: 10.6ms | ActiveRecord: 0.5ms | Allocations: 14220)
+
+
+Started POST "/templates" for ::1 at 2024-01-15 01:33:01 +0530
+Processing by TemplatesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "template"=>{"template_id"=>"1", "name"=>"Leave Request", "applicants"=>["Student"], "approval_flow"=>["Faculty Advisor", "HoD"], "field"=>"Reason"}, "commit"=>"Create Template"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.6ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:12:in `create?'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTemplate Create (0.4ms)[0m  [1m[32mINSERT INTO "templates" ("template_id", "name", "applicants", "approval_flow", "field", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["template_id", 1], ["name", "Leave Request"], ["applicants", "[\"Student\"]"], ["approval_flow", "[\"Faculty Advisor\", \"HoD\"]"], ["field", "Reason"], ["start_time", nil], ["end_time", nil], ["created_at", "2024-01-14 20:03:01.811088"], ["updated_at", "2024-01-14 20:03:01.811088"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApprover Create (0.1ms)[0m  [1m[32mINSERT INTO "approvers" ("name", "step", "comments", "decision", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Faculty Advisor"], ["step", 1], ["comments", nil], ["decision", nil], ["template_id", 5], ["created_at", "2024-01-14 20:03:01.820491"], ["updated_at", "2024-01-14 20:03:01.820491"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (6.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApprover Create (0.3ms)[0m  [1m[32mINSERT INTO "approvers" ("name", "step", "comments", "decision", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "HoD"], ["step", 2], ["comments", nil], ["decision", nil], ["template_id", 5], ["created_at", "2024-01-14 20:03:01.832984"], ["updated_at", "2024-01-14 20:03:01.832984"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (3.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApplicant Load (0.2ms)[0m  [1m[34mSELECT "applicants".* FROM "applicants" WHERE "applicants"."name" = ? AND "applicants"."resource_type" IS NULL AND "applicants"."resource_id" IS NULL ORDER BY "applicants"."id" ASC LIMIT ?[0m  [["name", "Student"], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mApplicant Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ? AND "applicants"."id" = ? LIMIT ?[0m  [["template_id", 5], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mCACHE Applicant Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ? AND "applicants"."id" = ? LIMIT ?[0m  [["template_id", 5], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTemplate::HABTM_Roles Create (0.7ms)[0m  [1m[32mINSERT INTO "templates_applicants" ("template_id", "applicant_id") VALUES (?, ?)[0m  [["template_id", 5], ["applicant_id", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTRANSACTION (11.7ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+Redirected to http://[::1]:3000/templates/5
+Completed 302 Found in 110ms (ActiveRecord: 31.1ms | Allocations: 25111)
+
+
+Started GET "/templates/5" for ::1 at 2024-01-15 01:33:01 +0530
+Processing by TemplatesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:81:in `set_template'
+  [1m[36mRole Load (1.0ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:16:in `show?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/show.html.erb within layouts/application
+  Rendered templates/_template.html.erb (Duration: 3.3ms | Allocations: 298)
+  Rendered templates/show.html.erb within layouts/application (Duration: 16.0ms | Allocations: 1265)
+  Rendered layout layouts/application.html.erb (Duration: 33.7ms | Allocations: 3742)
+Completed 200 OK in 49ms (Views: 35.3ms | ActiveRecord: 1.6ms | Allocations: 7627)
+
+
+Started GET "/service_requests" for 127.0.0.1 at 2024-01-15 01:33:11 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (1.0ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 9.8ms | Allocations: 1160)
+  Rendered layout layouts/application.html.erb (Duration: 19.4ms | Allocations: 3780)
+Completed 200 OK in 39ms (Views: 25.0ms | ActiveRecord: 2.0ms | Allocations: 7302)
+
+
+Started GET "/service_requests/available" for 127.0.0.1 at 2024-01-15 01:33:13 +0530
+Processing by ServiceRequestsController#available as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.5ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 8]]
+  ↳ app/controllers/service_requests_controller.rb:59:in `available'
+  [1m[36mApplicant Load (0.4ms)[0m  [1m[34mSELECT "applicants".* FROM "applicants" WHERE "applicants"."name" = ?[0m  [["name", "Student"]]
+  ↳ app/controllers/service_requests_controller.rb:61:in `available'
+  [1m[36mTemplate Pluck (0.2ms)[0m  [1m[34mSELECT "templates"."id" FROM "templates" INNER JOIN "templates_applicants" ON "templates"."id" = "templates_applicants"."template_id" WHERE "templates_applicants"."applicant_id" = ?[0m  [["applicant_id", 1]]
+  ↳ app/controllers/service_requests_controller.rb:62:in `block in available'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/available.html.erb within layouts/application
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ?[0m  [["id", 5]]
+  ↳ app/views/service_requests/available.html.erb:5
+  Rendered service_requests/available.html.erb within layouts/application (Duration: 36.5ms | Allocations: 850)
+  Rendered layout layouts/application.html.erb (Duration: 46.8ms | Allocations: 3277)
+Completed 200 OK in 69ms (Views: 48.0ms | ActiveRecord: 1.6ms | Allocations: 8440)
+
+
+Started GET "/service_requests/new?temp_id=1" for 127.0.0.1 at 2024-01-15 01:33:17 +0530
+Processing by ServiceRequestsController#new as HTML
+  Parameters: {"temp_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:152:in `set_template'
+  [1m[36mApplicant Pluck (0.3ms)[0m  [1m[34mSELECT "applicants"."name" FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/controllers/service_requests_controller.rb:71:in `new'
+  [1m[36mRole Pluck (0.5ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 8]]
+  ↳ app/controllers/service_requests_controller.rb:71:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/new.html.erb within layouts/application
+  [1m[36mApprover Load (0.3ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/views/service_requests/_form.html.erb:56
+  Rendered service_requests/_form.html.erb (Duration: 20.9ms | Allocations: 4777)
+  Rendered service_requests/new.html.erb within layouts/application (Duration: 24.2ms | Allocations: 5067)
+  Rendered layout layouts/application.html.erb (Duration: 39.5ms | Allocations: 7486)
+Completed 200 OK in 90ms (Views: 41.8ms | ActiveRecord: 2.4ms | Allocations: 18008)
+
+
+Started POST "/service_requests" for 127.0.0.1 at 2024-01-15 01:33:25 +0530
+Processing by ServiceRequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "service_request"=>{"request"=>"Leave Request", "temp_id"=>"1", "applicant_name"=>"Foo Bar", "unique_id"=>"22190", "dept"=>"MACS", "approval_flow"=>"[\"Faculty Advisor\", \"HoD\"]", "current_approver"=>"Faculty Advisor", "approval_status"=>"Yet to be Approved", "current_step"=>"1", "field_name"=>"Reason", "field_response"=>"Medical Leave- Chicken Pox"}, "commit"=>"Create Service request"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:88:in `create'
+  [1m[36mApplicant Pluck (0.1ms)[0m  [1m[34mSELECT "applicants"."name" FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/controllers/service_requests_controller.rb:90:in `create'
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 8]]
+  ↳ app/controllers/service_requests_controller.rb:90:in `create'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+  [1m[36mServiceRequest Create (0.5ms)[0m  [1m[32mINSERT INTO "service_requests" ("request", "temp_id", "current_step", "applicant_name", "unique_id", "dept", "approval_status", "approval_flow", "field_name", "field_response", "current_approver", "comments", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["request", "Leave Request"], ["temp_id", 1], ["current_step", 1], ["applicant_name", "Foo Bar"], ["unique_id", 22190], ["dept", "MACS"], ["approval_status", "Yet to be Approved"], ["approval_flow", "[\"Faculty Advisor\", \"HoD\"]"], ["field_name", "Reason"], ["field_response", "Medical Leave- Chicken Pox"], ["current_approver", "Faculty Advisor"], ["comments", nil], ["created_at", "2024-01-14 20:03:25.299186"], ["updated_at", "2024-01-14 20:03:25.299186"]]
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+  [1m[36mTRANSACTION (5.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+Redirected to http://127.0.0.1:3000/service_requests/23
+Completed 302 Found in 22ms (ActiveRecord: 7.1ms | Allocations: 5896)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:33:25 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 3.1ms | Allocations: 376)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 10.7ms | Allocations: 1119)
+  Rendered layout layouts/application.html.erb (Duration: 15.7ms | Allocations: 3487)
+Completed 200 OK in 22ms (Views: 17.5ms | ActiveRecord: 0.2ms | Allocations: 6250)
+
+
+Started GET "/templates" for ::1 at 2024-01-15 01:33:43 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/_template.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered templates/index.html.erb within layouts/application (Duration: 0.8ms | Allocations: 756)
+  Rendered layout layouts/application.html.erb (Duration: 5.4ms | Allocations: 3131)
+Completed 200 OK in 10ms (Views: 5.7ms | ActiveRecord: 0.3ms | Allocations: 5630)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:33:45 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.8ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 9.1ms | Allocations: 1679)
+  Rendered layout layouts/application.html.erb (Duration: 14.7ms | Allocations: 4064)
+Completed 200 OK in 25ms (Views: 15.4ms | ActiveRecord: 1.2ms | Allocations: 5579)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:33:46 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 10ms (ActiveRecord: 0.3ms | Allocations: 1766)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:33:46 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 257)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:33:46 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 5.1ms | Allocations: 1222)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 3601)
+Completed 200 OK in 22ms (Views: 18.8ms | ActiveRecord: 0.0ms | Allocations: 4217)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 01:33:53 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"fa.macs@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "fa.macs@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 213ms (ActiveRecord: 0.2ms | Allocations: 2307)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:33:53 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 12.7ms | Allocations: 1591)
+  Rendered layout layouts/application.html.erb (Duration: 25.1ms | Allocations: 3977)
+Completed 200 OK in 40ms (Views: 30.6ms | ActiveRecord: 0.3ms | Allocations: 5482)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:33:57 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1490)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 3917)
+Completed 200 OK in 17ms (Views: 11.5ms | ActiveRecord: 0.4ms | Allocations: 6390)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=23" for ::1 at 2024-01-15 01:34:02 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"23"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.3ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 2], ["template_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (0.3ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 2], ["current_approver", "HoD"], ["updated_at", "2024-01-14 20:04:02.661810"], ["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://[::1]:3000/service_requests/display_approvals
+Completed 302 Found in 21ms (ActiveRecord: 5.3ms | Allocations: 6621)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:34:02 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 2.9ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 10.3ms | Allocations: 2984)
+Completed 200 OK in 16ms (Views: 11.3ms | ActiveRecord: 0.5ms | Allocations: 5407)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:34:05 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 384)
+  Rendered layout layouts/application.html.erb (Duration: 9.0ms | Allocations: 2793)
+Completed 200 OK in 20ms (Views: 10.2ms | ActiveRecord: 0.6ms | Allocations: 4784)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:34:20 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 9ms (ActiveRecord: 0.3ms | Allocations: 1761)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:34:20 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 263)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:34:20 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 3587)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.0ms | Allocations: 4195)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 01:34:26 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 193ms (ActiveRecord: 0.1ms | Allocations: 2250)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:34:26 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1590)
+  Rendered layout layouts/application.html.erb (Duration: 5.3ms | Allocations: 3976)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.2ms | Allocations: 5482)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:34:30 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 2.0ms | Allocations: 1191)
+  Rendered layout layouts/application.html.erb (Duration: 6.6ms | Allocations: 3576)
+Completed 200 OK in 13ms (Views: 7.0ms | ActiveRecord: 0.3ms | Allocations: 5992)
+
+
+Started PUT "/service_requests/decision?decision=Rejected&id=23" for ::1 at 2024-01-15 01:34:34 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Rejected", "id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (0.6ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 0], ["approval_status", "Rejected"], ["current_approver", nil], ["updated_at", "2024-01-14 20:04:34.971397"], ["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://[::1]:3000/service_requests/display_approvals
+Completed 302 Found in 25ms (ActiveRecord: 5.6ms | Allocations: 4521)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:34:34 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.3ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 1.0ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 3.0ms | Allocations: 2942)
+Completed 200 OK in 11ms (Views: 3.3ms | ActiveRecord: 0.6ms | Allocations: 5362)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:34:38 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 35)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 2.4ms | Allocations: 445)
+  Rendered layout layouts/application.html.erb (Duration: 9.9ms | Allocations: 2812)
+Completed 200 OK in 23ms (Views: 10.9ms | ActiveRecord: 0.7ms | Allocations: 4795)
+
+
+Started GET "/service_requests/23/edit?temp_id=1" for 127.0.0.1 at 2024-01-15 01:34:44 +0530
+Processing by ServiceRequestsController#edit as HTML
+  Parameters: {"temp_id"=>"1", "id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:152:in `set_template'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/edit.html.erb within layouts/application
+  [1m[36mApprover Load (0.1ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/views/service_requests/_form.html.erb:56
+  Rendered service_requests/_form.html.erb (Duration: 3.7ms | Allocations: 2362)
+  Rendered service_requests/edit.html.erb within layouts/application (Duration: 11.3ms | Allocations: 2639)
+  Rendered layout layouts/application.html.erb (Duration: 17.6ms | Allocations: 5034)
+Completed 200 OK in 33ms (Views: 19.8ms | ActiveRecord: 0.8ms | Allocations: 7578)
+
+
+Started PATCH "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:34:52 +0530
+Processing by ServiceRequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "service_request"=>{"request"=>"Leave Request", "temp_id"=>"1", "applicant_name"=>"Foo Bar", "unique_id"=>"22190", "dept"=>"MACS", "approval_flow"=>"[\"Faculty Advisor\", \"HoD\"]", "current_approver"=>"Faculty Advisor", "approval_status"=>"Yet to be Approved", "current_step"=>"1", "field_name"=>"Reason", "field_response"=>"Medical Leave- Measles"}, "commit"=>"Update Service request", "id"=>"23"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.0ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+  [1m[36mServiceRequest Update (0.2ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "field_response" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 1], ["approval_status", "Yet to be Approved"], ["field_response", "Medical Leave- Measles"], ["current_approver", "Faculty Advisor"], ["updated_at", "2024-01-14 20:04:52.183732"], ["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+Redirected to http://127.0.0.1:3000/service_requests/23
+Completed 302 Found in 10ms (ActiveRecord: 4.4ms | Allocations: 4029)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:34:52 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.0ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 0.7ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 2795)
+Completed 200 OK in 11ms (Views: 8.1ms | ActiveRecord: 0.1ms | Allocations: 4839)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:00 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1586)
+  Rendered layout layouts/application.html.erb (Duration: 5.7ms | Allocations: 4013)
+Completed 200 OK in 10ms (Views: 6.0ms | ActiveRecord: 0.3ms | Allocations: 5519)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:35:01 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 3ms (ActiveRecord: 0.1ms | Allocations: 1768)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:01 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 251)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:35:01 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.4ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 3626)
+Completed 200 OK in 10ms (Views: 9.1ms | ActiveRecord: 0.0ms | Allocations: 4246)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 01:35:05 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"fa.macs@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "fa.macs@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 193ms (ActiveRecord: 0.1ms | Allocations: 2247)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:05 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.9ms | Allocations: 1591)
+  Rendered layout layouts/application.html.erb (Duration: 9.5ms | Allocations: 3977)
+Completed 200 OK in 12ms (Views: 9.7ms | ActiveRecord: 0.4ms | Allocations: 5476)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:35:06 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.5ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 4.0ms | Allocations: 1190)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 3575)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 0.7ms | Allocations: 6003)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=23" for ::1 at 2024-01-15 01:35:11 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.6ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.2ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 2], ["template_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (0.3ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 2], ["current_approver", "HoD"], ["updated_at", "2024-01-14 20:05:11.211605"], ["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (11.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://[::1]:3000/service_requests/display_approvals
+Completed 302 Found in 35ms (ActiveRecord: 13.3ms | Allocations: 5476)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:35:11 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 2.5ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 6.2ms | Allocations: 2942)
+Completed 200 OK in 13ms (Views: 6.6ms | ActiveRecord: 0.4ms | Allocations: 5343)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:35:13 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.8ms | Allocations: 383)
+  Rendered layout layouts/application.html.erb (Duration: 10.5ms | Allocations: 2750)
+Completed 200 OK in 19ms (Views: 11.5ms | ActiveRecord: 0.4ms | Allocations: 4732)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:19 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 15.2ms | Allocations: 3972)
+Completed 200 OK in 20ms (Views: 15.8ms | ActiveRecord: 0.3ms | Allocations: 5483)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 01:35:21 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 5ms (ActiveRecord: 0.1ms | Allocations: 1758)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:21 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 251)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 01:35:21 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 4.7ms | Allocations: 3629)
+Completed 200 OK in 6ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 4246)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 01:35:27 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+Redirected to http://[::1]:3000/
+Completed 303 See Other in 193ms (ActiveRecord: 0.1ms | Allocations: 2275)
+
+
+Started GET "/" for ::1 at 2024-01-15 01:35:27 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1590)
+  Rendered layout layouts/application.html.erb (Duration: 9.8ms | Allocations: 4018)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.2ms | Allocations: 5531)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:35:29 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.3ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.4ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.4ms | Allocations: 36)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 6.9ms | Allocations: 1190)
+  Rendered layout layouts/application.html.erb (Duration: 10.6ms | Allocations: 3577)
+Completed 200 OK in 22ms (Views: 11.1ms | ActiveRecord: 0.9ms | Allocations: 5991)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=23" for ::1 at 2024-01-15 01:35:33 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"23"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.1ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 3], ["template_id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (1.6ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 3], ["approval_status", "Approved"], ["current_approver", nil], ["updated_at", "2024-01-14 20:05:33.734217"], ["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (3.9ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://[::1]:3000/service_requests/display_approvals
+Completed 302 Found in 31ms (ActiveRecord: 6.6ms | Allocations: 5482)
+
+
+Started GET "/service_requests/display_approvals" for ::1 at 2024-01-15 01:35:33 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 0.6ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 2.9ms | Allocations: 2979)
+Completed 200 OK in 11ms (Views: 3.1ms | ActiveRecord: 0.6ms | Allocations: 5398)
+
+
+Started GET "/service_requests/23" for 127.0.0.1 at 2024-01-15 01:35:36 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.5ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 34)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 381)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 2748)
+Completed 200 OK in 24ms (Views: 10.4ms | ActiveRecord: 0.8ms | Allocations: 4751)
+
+
+Started GET "/service_requests" for 127.0.0.1 at 2024-01-15 01:35:42 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (1.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 780)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 3155)
+Completed 200 OK in 25ms (Views: 11.9ms | ActiveRecord: 1.8ms | Allocations: 4715)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 01:35:43 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 8]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 3972)
+Completed 200 OK in 9ms (Views: 6.6ms | ActiveRecord: 0.3ms | Allocations: 5468)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 01:35:48 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 13ms (ActiveRecord: 0.4ms | Allocations: 1735)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 01:35:48 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 248)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 01:35:48 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.1ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 3.4ms | Allocations: 3587)
+Completed 200 OK in 5ms (Views: 3.8ms | ActiveRecord: 0.0ms | Allocations: 4200)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:19:38 +0530
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 8ms (ActiveRecord: 0.0ms | Allocations: 2581)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 11:19:38 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 2.2ms | Allocations: 737)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 9.5ms | Allocations: 3941)
+  Rendered layout layouts/application.html.erb (Duration: 71.4ms | Allocations: 25080)
+Completed 200 OK in 93ms (Views: 77.0ms | ActiveRecord: 0.6ms | Allocations: 35647)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 11:19:47 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "sujalamati.221ds030@nitk.edu.in"], ["LIMIT", 1]]
+Completed 401 Unauthorized in 199ms (ActiveRecord: 0.5ms | Allocations: 4279)
+
+
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1288)
+  Rendered layout layouts/application.html.erb (Duration: 4.8ms | Allocations: 3760)
+Completed 200 OK in 195ms (Views: 5.2ms | ActiveRecord: 0.0ms | Allocations: 4437)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 11:19:51 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "sujalamati.221ds030@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 211ms (ActiveRecord: 0.5ms | Allocations: 3309)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:19:51 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (1.1ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 45.5ms | Allocations: 12153)
+  Rendered layout layouts/application.html.erb (Duration: 47.7ms | Allocations: 14738)
+Completed 200 OK in 52ms (Views: 46.8ms | ActiveRecord: 2.5ms | Allocations: 17036)
+
+
+Started GET "/templates" for ::1 at 2024-01-15 11:19:53 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/_template.html.erb (Duration: 3.6ms | Allocations: 312)
+  Rendered templates/index.html.erb within layouts/application (Duration: 28.9ms | Allocations: 6721)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 9342)
+Completed 200 OK in 121ms (Views: 46.6ms | ActiveRecord: 1.9ms | Allocations: 15727)
+
+
+Started GET "/templates/5" for ::1 at 2024-01-15 11:19:55 +0530
+Processing by TemplatesController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:81:in `set_template'
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:16:in `show?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/show.html.erb within layouts/application
+  Rendered templates/_template.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered templates/show.html.erb within layouts/application (Duration: 1.3ms | Allocations: 615)
+  Rendered layout layouts/application.html.erb (Duration: 7.0ms | Allocations: 2983)
+Completed 200 OK in 15ms (Views: 7.7ms | ActiveRecord: 0.5ms | Allocations: 7009)
+
+
+Started DELETE "/templates/5" for ::1 at 2024-01-15 11:19:56 +0530
+Processing by TemplatesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"5"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.4ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:81:in `set_template'
+  [1m[36mRole Load (0.5ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:24:in `destroy?'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mApprover Load (0.8ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mApprover Destroy (0.4ms)[0m  [1m[31mDELETE FROM "approvers" WHERE "approvers"."id" = ?[0m  [["id", 11]]
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mApprover Destroy (0.1ms)[0m  [1m[31mDELETE FROM "approvers" WHERE "approvers"."id" = ?[0m  [["id", 12]]
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mTemplate::HABTM_Roles Delete All (0.1ms)[0m  [1m[31mDELETE FROM "templates_applicants" WHERE "templates_applicants"."template_id" = ?[0m  [["template_id", 5]]
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mTemplate Destroy (0.1ms)[0m  [1m[31mDELETE FROM "templates" WHERE "templates"."id" = ?[0m  [["id", 5]]
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:70:in `destroy'
+Redirected to http://localhost:3000/templates
+Completed 302 Found in 96ms (ActiveRecord: 11.5ms | Allocations: 15811)
+
+
+Started GET "/templates" for ::1 at 2024-01-15 11:19:56 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.5ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 632)
+  Rendered layout layouts/application.html.erb (Duration: 16.1ms | Allocations: 3133)
+Completed 200 OK in 21ms (Views: 16.3ms | ActiveRecord: 0.8ms | Allocations: 5770)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:19:59 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 165)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:19:59 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.6ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 6.8ms | Allocations: 1246)
+  Rendered layout layouts/application.html.erb (Duration: 14.5ms | Allocations: 3652)
+Completed 200 OK in 17ms (Views: 15.5ms | ActiveRecord: 0.0ms | Allocations: 4270)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:20:08 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 195ms (ActiveRecord: 0.1ms | Allocations: 2308)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:20:08 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.1ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.2ms | Allocations: 1592)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 3978)
+Completed 200 OK in 12ms (Views: 8.7ms | ActiveRecord: 0.2ms | Allocations: 5487)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/service_requests" for 127.0.0.1 at 2024-01-15 11:20:41 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 234]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 1.8ms | Allocations: 1164)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 3742)
+Completed 200 OK in 12ms (Views: 6.5ms | ActiveRecord: 0.6ms | Allocations: 7249)
+
+
+Started GET "/templates" for ::1 at 2024-01-15 11:20:46 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/index.html.erb within layouts/application (Duration: 2.5ms | Allocations: 608)
+  Rendered layout layouts/application.html.erb (Duration: 6.3ms | Allocations: 2983)
+Completed 200 OK in 15ms (Views: 6.9ms | ActiveRecord: 0.8ms | Allocations: 5636)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:20:47 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 16.5ms | Allocations: 1689)
+  Rendered layout layouts/application.html.erb (Duration: 29.6ms | Allocations: 4074)
+Completed 200 OK in 39ms (Views: 30.0ms | ActiveRecord: 0.7ms | Allocations: 5583)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-15 11:20:49 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 2210566]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 4.7ms | Allocations: 621)
+  Rendered layout layouts/application.html.erb (Duration: 19.6ms | Allocations: 2996)
+Completed 200 OK in 30ms (Views: 20.2ms | ActiveRecord: 0.4ms | Allocations: 4562)
+
+
+Started DELETE "/users/sign_out" for ::1 at 2024-01-15 11:20:52 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 4ms (ActiveRecord: 0.1ms | Allocations: 2704)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:20:52 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 297)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 11:20:52 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.1ms | Allocations: 133)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.2ms | Allocations: 1274)
+  Rendered layout layouts/application.html.erb (Duration: 3.7ms | Allocations: 3756)
+Completed 200 OK in 5ms (Views: 4.1ms | ActiveRecord: 0.0ms | Allocations: 4417)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-01-15 11:20:58 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"foo.bar@gmail.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "foo.bar@gmail.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/
+Completed 303 See Other in 194ms (ActiveRecord: 0.2ms | Allocations: 2405)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:20:58 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 8]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 2.8ms | Allocations: 1660)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 4088)
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.3ms | Allocations: 5601)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-15 11:21:01 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.6ms | Allocations: 407)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 17.1ms | Allocations: 7536)
+  Rendered layout layouts/application.html.erb (Duration: 20.3ms | Allocations: 9911)
+Completed 200 OK in 26ms (Views: 20.2ms | ActiveRecord: 1.0ms | Allocations: 11471)
+
+
+Started GET "/service_requests/23" for ::1 at 2024-01-15 11:21:07 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"23"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 34)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.2ms | Allocations: 610)
+  Rendered layout layouts/application.html.erb (Duration: 4.3ms | Allocations: 2977)
+Completed 200 OK in 11ms (Views: 4.9ms | ActiveRecord: 0.4ms | Allocations: 5706)
+
+
+Started DELETE "/service_requests/23" for ::1 at 2024-01-15 11:21:08 +0530
+Processing by ServiceRequestsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"23"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 23], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:132:in `destroy'
+  [1m[36mServiceRequest Destroy (0.1ms)[0m  [1m[31mDELETE FROM "service_requests" WHERE "service_requests"."id" = ?[0m  [["id", 23]]
+  ↳ app/controllers/service_requests_controller.rb:132:in `destroy'
+  [1m[36mTRANSACTION (10.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:132:in `destroy'
+Redirected to http://localhost:3000/service_requests
+Completed 302 Found in 18ms (ActiveRecord: 10.6ms | Allocations: 3572)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-15 11:21:08 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 1.1ms | Allocations: 623)
+  Rendered layout layouts/application.html.erb (Duration: 4.9ms | Allocations: 3000)
+Completed 200 OK in 7ms (Views: 5.4ms | ActiveRecord: 0.1ms | Allocations: 4585)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:21:10 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.6ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 8]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 7.9ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 13.5ms | Allocations: 3972)
+Completed 200 OK in 22ms (Views: 14.1ms | ActiveRecord: 0.9ms | Allocations: 5477)
+
+
+Started DELETE "/users" for ::1 at 2024-01-15 11:21:12 +0530
+Processing by Users::RegistrationsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 8], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser::HABTM_Roles Delete All (0.3ms)[0m  [1m[31mDELETE FROM "users_roles" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 8]]
+  [1m[36mUser Destroy (0.2ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = ?[0m  [["id", 8]]
+  [1m[36mTRANSACTION (4.4ms)[0m  [1m[36mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 303 See Other in 16ms (ActiveRecord: 5.3ms | Allocations: 6272)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:21:12 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 289)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 11:21:12 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.2ms | Allocations: 133)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.4ms | Allocations: 1271)
+  Rendered layout layouts/application.html.erb (Duration: 4.1ms | Allocations: 3747)
+Completed 200 OK in 5ms (Views: 4.5ms | ActiveRecord: 0.0ms | Allocations: 4415)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 11:21:16 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 6ms (ActiveRecord: 0.3ms | Allocations: 1798)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:21:16 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 250)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:21:16 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.1ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 1.3ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 3.9ms | Allocations: 3587)
+Completed 200 OK in 5ms (Views: 4.2ms | ActiveRecord: 0.0ms | Allocations: 4200)
+
+
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+Started GET "/" for ::1 at 2024-01-15 11:22:52 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 254)
+
+
+Started GET "/users/sign_in" for ::1 at 2024-01-15 11:22:52 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 1.9ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 43.0ms | Allocations: 1204)
+  Rendered layout layouts/application.html.erb (Duration: 55.7ms | Allocations: 3625)
+Completed 200 OK in 63ms (Views: 57.5ms | ActiveRecord: 0.0ms | Allocations: 4255)
+
+
+Started GET "/users/sign_up" for ::1 at 2024-01-15 11:22:58 +0530
+Processing by Users::RegistrationsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/registrations/new.html.erb within layouts/application
+  Rendered devise/shared/_error_messages.html.erb (Duration: 1.3ms | Allocations: 218)
+  Rendered devise/shared/_links.html.erb (Duration: 0.5ms | Allocations: 150)
+  Rendered devise/registrations/new.html.erb within layouts/application (Duration: 7.7ms | Allocations: 3585)
+  Rendered layout layouts/application.html.erb (Duration: 14.4ms | Allocations: 6142)
+Completed 200 OK in 18ms (Views: 17.1ms | ActiveRecord: 0.0ms | Allocations: 7389)
+
+
+Started POST "/users" for ::1 at 2024-01-15 11:23:17 +0530
+Processing by Users::RegistrationsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"foo.bar@gmail.com", "name"=>"Foo Bar", "unique_id"=>"22190", "role"=>["Student"], "department"=>"MACS", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Exists? (6.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "foo.bar@gmail.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mUser Create (2.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "department", "unique_id", "role", "email", "encrypted_password", "reset_password_token", "reset_password_sent_at", "remember_created_at", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Foo Bar"], ["department", "MACS"], ["unique_id", 22190], ["role", "[\"Student\"]"], ["email", "foo.bar@gmail.com"], ["encrypted_password", "[FILTERED]"], ["reset_password_token", "[FILTERED]"], ["reset_password_sent_at", "[FILTERED]"], ["remember_created_at", nil], ["created_at", "2024-01-15 05:53:17.282100"], ["updated_at", "2024-01-15 05:53:17.282100"]]
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+  [1m[36mTRANSACTION (4.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:14:in `create'
+Redirected to http://localhost:3000/
+  [1m[36mRole Load (0.6ms)[0m  [1m[34mSELECT "roles".* FROM "roles" WHERE "roles"."name" = ? AND "roles"."resource_type" IS NULL AND "roles"."resource_id" IS NULL ORDER BY "roles"."id" ASC LIMIT ?[0m  [["name", "Student"], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mRole Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 11], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mCACHE Role Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND "roles"."id" = ? LIMIT ?[0m  [["user_id", 11], ["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mUser::HABTM_Roles Create (0.4ms)[0m  [1m[32mINSERT INTO "users_roles" ("user_id", "role_id") VALUES (?, ?)[0m  [["user_id", 11], ["role_id", 2]]
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users/registrations_controller.rb:16:in `block in create'
+Completed 303 See Other in 280ms (ActiveRecord: 18.4ms | Allocations: 12846)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:23:17 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.6ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 11]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 6.2ms | Allocations: 1599)
+  Rendered layout layouts/application.html.erb (Duration: 9.6ms | Allocations: 4029)
+Completed 200 OK in 12ms (Views: 9.5ms | ActiveRecord: 0.7ms | Allocations: 5586)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:23:32 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"sujalamati.221ds030@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "sujalamati.221ds030@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 256ms (ActiveRecord: 0.7ms | Allocations: 2281)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:23:33 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1685)
+  Rendered layout layouts/application.html.erb (Duration: 8.0ms | Allocations: 4071)
+Completed 200 OK in 15ms (Views: 8.3ms | ActiveRecord: 0.4ms | Allocations: 5561)
+
+
+Started GET "/templates" for 127.0.0.1 at 2024-01-15 11:23:42 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.5ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/index.html.erb within layouts/application (Duration: 0.9ms | Allocations: 607)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2997)
+Completed 200 OK in 16ms (Views: 4.8ms | ActiveRecord: 1.3ms | Allocations: 5485)
+
+
+Started GET "/templates/new" for 127.0.0.1 at 2024-01-15 11:23:43 +0530
+Processing by TemplatesController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:8:in `new?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/new.html.erb within layouts/application
+  Rendered templates/_form.html.erb (Duration: 15.4ms | Allocations: 6915)
+  Rendered templates/new.html.erb within layouts/application (Duration: 17.8ms | Allocations: 7214)
+  Rendered layout layouts/application.html.erb (Duration: 20.2ms | Allocations: 9744)
+Completed 200 OK in 26ms (Views: 21.2ms | ActiveRecord: 0.3ms | Allocations: 12300)
+
+
+Started POST "/templates" for 127.0.0.1 at 2024-01-15 11:23:59 +0530
+Processing by TemplatesController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "template"=>{"template_id"=>"1", "name"=>"Leave Request", "applicants"=>["Student"], "approval_flow"=>["Faculty Advisor", "HoD"], "field"=>"Reason"}, "commit"=>"Create Template"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.8ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:12:in `create?'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTemplate Create (2.7ms)[0m  [1m[32mINSERT INTO "templates" ("template_id", "name", "applicants", "approval_flow", "field", "start_time", "end_time", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["template_id", 1], ["name", "Leave Request"], ["applicants", "[\"Student\"]"], ["approval_flow", "[\"Faculty Advisor\", \"HoD\"]"], ["field", "Reason"], ["start_time", nil], ["end_time", nil], ["created_at", "2024-01-15 05:53:59.725691"], ["updated_at", "2024-01-15 05:53:59.725691"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApprover Create (0.2ms)[0m  [1m[32mINSERT INTO "approvers" ("name", "step", "comments", "decision", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Faculty Advisor"], ["step", 1], ["comments", nil], ["decision", nil], ["template_id", 6], ["created_at", "2024-01-15 05:53:59.734323"], ["updated_at", "2024-01-15 05:53:59.734323"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (4.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApprover Create (0.7ms)[0m  [1m[32mINSERT INTO "approvers" ("name", "step", "comments", "decision", "template_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "HoD"], ["step", 2], ["comments", nil], ["decision", nil], ["template_id", 6], ["created_at", "2024-01-15 05:53:59.743344"], ["updated_at", "2024-01-15 05:53:59.743344"]]
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mTRANSACTION (5.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:33:in `block in create'
+  [1m[36mApplicant Load (0.8ms)[0m  [1m[34mSELECT "applicants".* FROM "applicants" WHERE "applicants"."name" = ? AND "applicants"."resource_type" IS NULL AND "applicants"."resource_id" IS NULL ORDER BY "applicants"."id" ASC LIMIT ?[0m  [["name", "Student"], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mApplicant Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ? AND "applicants"."id" = ? LIMIT ?[0m  [["template_id", 6], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mCACHE Applicant Exists? (0.0ms)[0m  [1m[34mSELECT 1 AS one FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ? AND "applicants"."id" = ? LIMIT ?[0m  [["template_id", 6], ["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTemplate::HABTM_Roles Create (0.3ms)[0m  [1m[32mINSERT INTO "templates_applicants" ("template_id", "applicant_id") VALUES (?, ?)[0m  [["template_id", 6], ["applicant_id", 1]]
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+  [1m[36mTRANSACTION (3.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/templates_controller.rb:39:in `block in create'
+Redirected to http://127.0.0.1:3000/templates/6
+Completed 302 Found in 82ms (ActiveRecord: 20.5ms | Allocations: 19471)
+
+
+Started GET "/templates/6" for 127.0.0.1 at 2024-01-15 11:23:59 +0530
+Processing by TemplatesController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/templates_controller.rb:81:in `set_template'
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:16:in `show?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/show.html.erb within layouts/application
+  Rendered templates/_template.html.erb (Duration: 0.1ms | Allocations: 29)
+  Rendered templates/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 455)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | Allocations: 2919)
+Completed 200 OK in 35ms (Views: 24.4ms | ActiveRecord: 0.7ms | Allocations: 6011)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-15 11:24:13 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (1.9ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 4.6ms | Allocations: 623)
+  Rendered layout layouts/application.html.erb (Duration: 9.4ms | Allocations: 3040)
+Completed 200 OK in 13ms (Views: 8.4ms | ActiveRecord: 2.1ms | Allocations: 4618)
+
+
+Started GET "/service_requests/available" for ::1 at 2024-01-15 11:24:15 +0530
+Processing by ServiceRequestsController#available as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 11]]
+  ↳ app/controllers/service_requests_controller.rb:59:in `available'
+  [1m[36mApplicant Load (0.5ms)[0m  [1m[34mSELECT "applicants".* FROM "applicants" WHERE "applicants"."name" = ?[0m  [["name", "Student"]]
+  ↳ app/controllers/service_requests_controller.rb:61:in `available'
+  [1m[36mTemplate Pluck (0.2ms)[0m  [1m[34mSELECT "templates"."id" FROM "templates" INNER JOIN "templates_applicants" ON "templates"."id" = "templates_applicants"."template_id" WHERE "templates_applicants"."applicant_id" = ?[0m  [["applicant_id", 1]]
+  ↳ app/controllers/service_requests_controller.rb:62:in `block in available'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/available.html.erb within layouts/application
+  [1m[36mTemplate Load (0.3ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."id" = ?[0m  [["id", 6]]
+  ↳ app/views/service_requests/available.html.erb:5
+  Rendered service_requests/available.html.erb within layouts/application (Duration: 5.6ms | Allocations: 876)
+  Rendered layout layouts/application.html.erb (Duration: 10.2ms | Allocations: 3262)
+Completed 200 OK in 25ms (Views: 10.6ms | ActiveRecord: 1.5ms | Allocations: 8254)
+
+
+Started GET "/service_requests/new?temp_id=1" for ::1 at 2024-01-15 11:24:21 +0530
+Processing by ServiceRequestsController#new as HTML
+  Parameters: {"temp_id"=>"1"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:152:in `set_template'
+  [1m[36mApplicant Pluck (0.2ms)[0m  [1m[34mSELECT "applicants"."name" FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ?[0m  [["template_id", 6]]
+  ↳ app/controllers/service_requests_controller.rb:71:in `new'
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 11]]
+  ↳ app/controllers/service_requests_controller.rb:71:in `new'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/new.html.erb within layouts/application
+  [1m[36mApprover Load (0.1ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."template_id" = ?[0m  [["template_id", 6]]
+  ↳ app/views/service_requests/_form.html.erb:56
+  Rendered service_requests/_form.html.erb (Duration: 6.3ms | Allocations: 3158)
+  Rendered service_requests/new.html.erb within layouts/application (Duration: 7.7ms | Allocations: 3440)
+  Rendered layout layouts/application.html.erb (Duration: 12.3ms | Allocations: 5817)
+Completed 200 OK in 26ms (Views: 12.7ms | ActiveRecord: 1.2ms | Allocations: 10196)
+
+
+Started POST "/service_requests" for ::1 at 2024-01-15 11:24:34 +0530
+Processing by ServiceRequestsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "service_request"=>{"request"=>"Leave Request", "temp_id"=>"1", "applicant_name"=>"Foo Bar", "unique_id"=>"22190", "dept"=>"MACS", "approval_flow"=>"[\"Faculty Advisor\", \"HoD\"]", "current_approver"=>"Faculty Advisor", "approval_status"=>"Yet to be Approved", "current_step"=>"1", "field_name"=>"Reason", "field_response"=>"Medical Leave- Chicken Pox"}, "commit"=>"Create Service request"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:88:in `create'
+  [1m[36mApplicant Pluck (0.1ms)[0m  [1m[34mSELECT "applicants"."name" FROM "applicants" INNER JOIN "templates_applicants" ON "applicants"."id" = "templates_applicants"."applicant_id" WHERE "templates_applicants"."template_id" = ?[0m  [["template_id", 6]]
+  ↳ app/controllers/service_requests_controller.rb:90:in `create'
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 11]]
+  ↳ app/controllers/service_requests_controller.rb:90:in `create'
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+  [1m[36mServiceRequest Create (0.6ms)[0m  [1m[32mINSERT INTO "service_requests" ("request", "temp_id", "current_step", "applicant_name", "unique_id", "dept", "approval_status", "approval_flow", "field_name", "field_response", "current_approver", "comments", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)[0m  [["request", "Leave Request"], ["temp_id", 1], ["current_step", 1], ["applicant_name", "Foo Bar"], ["unique_id", 22190], ["dept", "MACS"], ["approval_status", "Yet to be Approved"], ["approval_flow", "[\"Faculty Advisor\", \"HoD\"]"], ["field_name", "Reason"], ["field_response", "Medical Leave- Chicken Pox"], ["current_approver", "Faculty Advisor"], ["comments", nil], ["created_at", "2024-01-15 05:54:34.523984"], ["updated_at", "2024-01-15 05:54:34.523984"]]
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+  [1m[36mTRANSACTION (4.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:98:in `block in create'
+Redirected to http://localhost:3000/service_requests/24
+Completed 302 Found in 30ms (ActiveRecord: 5.8ms | Allocations: 5764)
+
+
+Started GET "/service_requests/24" for ::1 at 2024-01-15 11:24:34 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 0.8ms | Allocations: 386)
+  Rendered layout layouts/application.html.erb (Duration: 4.2ms | Allocations: 2796)
+Completed 200 OK in 11ms (Views: 5.2ms | ActiveRecord: 0.3ms | Allocations: 4843)
+
+
+Started GET "/templates" for 127.0.0.1 at 2024-01-15 11:24:48 +0530
+Processing by TemplatesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/policies/user_policy.rb:4:in `index?'
+  Rendering layout layouts/application.html.erb
+  Rendering templates/index.html.erb within layouts/application
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates"[0m
+  ↳ app/views/templates/index.html.erb:6
+  Rendered templates/_template.html.erb (Duration: 0.1ms | Allocations: 26)
+  Rendered templates/index.html.erb within layouts/application (Duration: 1.7ms | Allocations: 756)
+  Rendered layout layouts/application.html.erb (Duration: 5.5ms | Allocations: 3131)
+Completed 200 OK in 13ms (Views: 6.0ms | ActiveRecord: 0.4ms | Allocations: 5607)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:24:49 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 7]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.4ms | Allocations: 1679)
+  Rendered layout layouts/application.html.erb (Duration: 11.8ms | Allocations: 4078)
+Completed 200 OK in 19ms (Views: 12.7ms | ActiveRecord: 0.5ms | Allocations: 5583)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 11:24:51 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 7], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 5ms (ActiveRecord: 0.1ms | Allocations: 1782)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:24:51 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 254)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:24:51 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.4ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1222)
+  Rendered layout layouts/application.html.erb (Duration: 14.2ms | Allocations: 3602)
+Completed 200 OK in 16ms (Views: 14.9ms | ActiveRecord: 0.0ms | Allocations: 4228)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:24:57 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"fa.macs@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "fa.macs@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 258ms (ActiveRecord: 0.1ms | Allocations: 2293)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:24:57 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.6ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.5ms | Allocations: 1591)
+  Rendered layout layouts/application.html.erb (Duration: 7.6ms | Allocations: 3977)
+Completed 200 OK in 14ms (Views: 7.9ms | ActiveRecord: 0.7ms | Allocations: 5473)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:25:02 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.4ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 37)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 6.3ms | Allocations: 1490)
+  Rendered layout layouts/application.html.erb (Duration: 12.1ms | Allocations: 3875)
+Completed 200 OK in 22ms (Views: 13.2ms | ActiveRecord: 0.9ms | Allocations: 6375)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=24" for 127.0.0.1 at 2024-01-15 11:25:15 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"24"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.4ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.4ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.3ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 2], ["template_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (1.9ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 2], ["current_approver", "HoD"], ["updated_at", "2024-01-15 05:55:15.634987"], ["id", 24]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (8.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://127.0.0.1:3000/service_requests/display_approvals
+Completed 302 Found in 54ms (ActiveRecord: 11.8ms | Allocations: 6620)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:25:15 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.3ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.9ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 5.1ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 20.2ms | Allocations: 2984)
+Completed 200 OK in 39ms (Views: 21.6ms | ActiveRecord: 1.3ms | Allocations: 5392)
+
+
+Started GET "/service_requests/24" for ::1 at 2024-01-15 11:25:18 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.5ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 4.1ms | Allocations: 384)
+  Rendered layout layouts/application.html.erb (Duration: 13.8ms | Allocations: 2752)
+Completed 200 OK in 25ms (Views: 16.2ms | ActiveRecord: 0.7ms | Allocations: 4757)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:25:31 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.8ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 12.2ms | Allocations: 3972)
+Completed 200 OK in 19ms (Views: 13.5ms | ActiveRecord: 0.5ms | Allocations: 5475)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 11:25:33 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 4ms (ActiveRecord: 0.1ms | Allocations: 1734)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:25:33 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 0ms (ActiveRecord: 0.0ms | Allocations: 272)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:25:33 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.7ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 3590)
+Completed 200 OK in 13ms (Views: 11.5ms | ActiveRecord: 0.0ms | Allocations: 4223)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:25:38 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 234ms (ActiveRecord: 0.2ms | Allocations: 2265)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:25:38 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.3ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.9ms | Allocations: 1590)
+  Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 4016)
+Completed 200 OK in 15ms (Views: 11.5ms | ActiveRecord: 0.4ms | Allocations: 5535)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:25:44 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 37)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 5.6ms | Allocations: 1191)
+  Rendered layout layouts/application.html.erb (Duration: 11.1ms | Allocations: 3590)
+Completed 200 OK in 17ms (Views: 11.7ms | ActiveRecord: 0.5ms | Allocations: 6000)
+
+
+Started PUT "/service_requests/decision?decision=Rejected&id=24" for 127.0.0.1 at 2024-01-15 11:25:54 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Rejected", "id"=>"24"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.6ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.4ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (1.5ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 0], ["approval_status", "Rejected"], ["current_approver", nil], ["updated_at", "2024-01-15 05:55:54.239057"], ["id", 24]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (6.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://127.0.0.1:3000/service_requests/display_approvals
+Completed 302 Found in 44ms (ActiveRecord: 9.4ms | Allocations: 4516)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:25:54 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.6ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 3.5ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 11.3ms | Allocations: 2969)
+Completed 200 OK in 28ms (Views: 12.2ms | ActiveRecord: 1.2ms | Allocations: 5388)
+
+
+Started GET "/service_requests/24" for ::1 at 2024-01-15 11:26:02 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.7ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 35)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 4.9ms | Allocations: 445)
+  Rendered layout layouts/application.html.erb (Duration: 15.1ms | Allocations: 2812)
+Completed 200 OK in 25ms (Views: 16.6ms | ActiveRecord: 0.9ms | Allocations: 4803)
+
+
+Started GET "/service_requests/24/edit?temp_id=1" for ::1 at 2024-01-15 11:26:05 +0530
+Processing by ServiceRequestsController#edit as HTML
+  Parameters: {"temp_id"=>"1", "id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  [1m[36mTemplate Load (0.1ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:152:in `set_template'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/edit.html.erb within layouts/application
+  [1m[36mApprover Load (0.2ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."template_id" = ?[0m  [["template_id", 6]]
+  ↳ app/views/service_requests/_form.html.erb:56
+  Rendered service_requests/_form.html.erb (Duration: 8.3ms | Allocations: 2362)
+  Rendered service_requests/edit.html.erb within layouts/application (Duration: 11.0ms | Allocations: 2639)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 5016)
+Completed 200 OK in 26ms (Views: 17.8ms | ActiveRecord: 0.6ms | Allocations: 7542)
+
+
+Started PATCH "/service_requests/24" for ::1 at 2024-01-15 11:26:11 +0530
+Processing by ServiceRequestsController#update as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "service_request"=>{"request"=>"Leave Request", "temp_id"=>"1", "applicant_name"=>"Foo Bar", "unique_id"=>"22190", "dept"=>"MACS", "approval_flow"=>"[\"Faculty Advisor\", \"HoD\"]", "current_approver"=>"Faculty Advisor", "approval_status"=>"Yet to be Approved", "current_step"=>"1", "field_name"=>"Reason", "field_response"=>"Medical Leave- Measles"}, "commit"=>"Update Service request", "id"=>"24"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+  [1m[36mServiceRequest Update (0.4ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "field_response" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 1], ["approval_status", "Yet to be Approved"], ["field_response", "Medical Leave- Measles"], ["current_approver", "Faculty Advisor"], ["updated_at", "2024-01-15 05:56:11.270733"], ["id", 24]]
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:116:in `block in update'
+Redirected to http://localhost:3000/service_requests/24
+Completed 302 Found in 25ms (ActiveRecord: 5.8ms | Allocations: 4034)
+
+
+Started GET "/service_requests/24" for ::1 at 2024-01-15 11:26:11 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.4ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.1ms | Allocations: 385)
+  Rendered layout layouts/application.html.erb (Duration: 5.2ms | Allocations: 2795)
+Completed 200 OK in 12ms (Views: 6.0ms | ActiveRecord: 0.5ms | Allocations: 4821)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:16 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 6.6ms | Allocations: 1586)
+  Rendered layout layouts/application.html.erb (Duration: 13.4ms | Allocations: 4014)
+Completed 200 OK in 21ms (Views: 15.3ms | ActiveRecord: 0.5ms | Allocations: 5532)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 11:26:17 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 4ms (ActiveRecord: 0.1ms | Allocations: 1722)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:17 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 2ms (ActiveRecord: 0.0ms | Allocations: 238)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:26:17 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3587)
+Completed 200 OK in 14ms (Views: 12.4ms | ActiveRecord: 0.0ms | Allocations: 4196)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:26:22 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"fa.macs@nitk.edu.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "fa.macs@nitk.edu.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 271ms (ActiveRecord: 0.5ms | Allocations: 2266)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:22 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1591)
+  Rendered layout layouts/application.html.erb (Duration: 7.9ms | Allocations: 3980)
+Completed 200 OK in 12ms (Views: 8.4ms | ActiveRecord: 0.3ms | Allocations: 5502)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:26:28 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.1ms | Allocations: 36)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1190)
+  Rendered layout layouts/application.html.erb (Duration: 7.1ms | Allocations: 3602)
+Completed 200 OK in 19ms (Views: 7.4ms | ActiveRecord: 0.7ms | Allocations: 6025)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=24" for 127.0.0.1 at 2024-01-15 11:26:30 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"24"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (1.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.6ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.9ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 2], ["template_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (1.2ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 2], ["current_approver", "HoD"], ["updated_at", "2024-01-15 05:56:30.551224"], ["id", 24]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (5.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://127.0.0.1:3000/service_requests/display_approvals
+Completed 302 Found in 49ms (ActiveRecord: 10.3ms | Allocations: 5461)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:26:30 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.8ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 10]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "Faculty Advisor"], ["unique_id", 678900]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 6.8ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 12.5ms | Allocations: 2956)
+Completed 200 OK in 38ms (Views: 15.4ms | ActiveRecord: 1.6ms | Allocations: 5378)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:33 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.4ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 10]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 6.1ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 16.7ms | Allocations: 3983)
+Completed 200 OK in 23ms (Views: 17.3ms | ActiveRecord: 0.6ms | Allocations: 5479)
+
+
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2024-01-15 11:26:35 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 10], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 10ms (ActiveRecord: 0.2ms | Allocations: 1746)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:35 +0530
+Processing by StaticPagesController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms | Allocations: 254)
+
+
+Started GET "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:26:35 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering devise/sessions/new.html.erb within layouts/application
+  Rendered devise/shared/_links.html.erb (Duration: 0.3ms | Allocations: 131)
+  Rendered devise/sessions/new.html.erb within layouts/application (Duration: 2.3ms | Allocations: 1208)
+  Rendered layout layouts/application.html.erb (Duration: 7.2ms | Allocations: 3603)
+Completed 200 OK in 10ms (Views: 7.8ms | ActiveRecord: 0.0ms | Allocations: 4199)
+
+
+Started POST "/users/sign_in" for 127.0.0.1 at 2024-01-15 11:26:39 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "user"=>{"email"=>"hod.macs@nitk.in", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["email", "hod.macs@nitk.in"], ["LIMIT", 1]]
+Redirected to http://127.0.0.1:3000/
+Completed 303 See Other in 254ms (ActiveRecord: 0.1ms | Allocations: 2254)
+
+
+Started GET "/" for 127.0.0.1 at 2024-01-15 11:26:39 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.2ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 9]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 3.6ms | Allocations: 1590)
+  Rendered layout layouts/application.html.erb (Duration: 8.4ms | Allocations: 4018)
+Completed 200 OK in 13ms (Views: 8.6ms | ActiveRecord: 0.5ms | Allocations: 5535)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:26:43 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.3ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.3ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 36)
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 4.1ms | Allocations: 1190)
+  Rendered layout layouts/application.html.erb (Duration: 8.8ms | Allocations: 3617)
+Completed 200 OK in 22ms (Views: 9.2ms | ActiveRecord: 1.2ms | Allocations: 6029)
+
+
+Started PUT "/service_requests/decision?decision=Approved&id=24" for 127.0.0.1 at 2024-01-15 11:26:44 +0530
+Processing by ServiceRequestsController#decision as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "decision"=>"Approved", "id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:19:in `decision'
+  [1m[36mRole Pluck (0.2ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:20:in `decision'
+  [1m[36mTemplate Load (0.2ms)[0m  [1m[34mSELECT "templates".* FROM "templates" WHERE "templates"."template_id" = ? LIMIT ?[0m  [["template_id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:28:in `decision'
+  [1m[36mApprover Load (0.2ms)[0m  [1m[34mSELECT "approvers".* FROM "approvers" WHERE "approvers"."step" = ? AND "approvers"."template_id" = ? LIMIT ?[0m  [["step", 3], ["template_id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:29:in `decision'
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mServiceRequest Update (1.0ms)[0m  [1m[33mUPDATE "service_requests" SET "current_step" = ?, "approval_status" = ?, "current_approver" = ?, "updated_at" = ? WHERE "service_requests"."id" = ?[0m  [["current_step", 3], ["approval_status", "Approved"], ["current_approver", nil], ["updated_at", "2024-01-15 05:56:45.006407"], ["id", 24]]
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+  [1m[36mTRANSACTION (4.8ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/service_requests_controller.rb:44:in `decision'
+Redirected to http://127.0.0.1:3000/service_requests/display_approvals
+Completed 302 Found in 43ms (ActiveRecord: 7.0ms | Allocations: 5452)
+
+
+Started GET "/service_requests/display_approvals" for 127.0.0.1 at 2024-01-15 11:26:45 +0530
+Processing by ServiceRequestsController#display_approvals as HTML
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 9], ["LIMIT", 1]]
+  [1m[36mRole Pluck (0.1ms)[0m  [1m[34mSELECT "roles"."name" FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ?[0m  [["user_id", 9]]
+  ↳ app/controllers/service_requests_controller.rb:14:in `display_approvals'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/display_approvals.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.2ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."current_approver" = ? AND "service_requests"."unique_id" != ?[0m  [["current_approver", "HoD"], ["unique_id", 234]]
+  ↳ app/views/service_requests/display_approvals.html.erb:4
+  Rendered service_requests/display_approvals.html.erb within layouts/application (Duration: 1.9ms | Allocations: 556)
+  Rendered layout layouts/application.html.erb (Duration: 6.1ms | Allocations: 2984)
+Completed 200 OK in 17ms (Views: 6.9ms | ActiveRecord: 1.0ms | Allocations: 5399)
+
+
+Started GET "/service_requests/24" for ::1 at 2024-01-15 11:26:49 +0530
+Processing by ServiceRequestsController#show as HTML
+  Parameters: {"id"=>"24"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."id" = ? LIMIT ?[0m  [["id", 24], ["LIMIT", 1]]
+  ↳ app/controllers/service_requests_controller.rb:143:in `set_service_request'
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/show.html.erb within layouts/application
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered service_requests/show.html.erb within layouts/application (Duration: 1.4ms | Allocations: 381)
+  Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 2748)
+Completed 200 OK in 21ms (Views: 13.2ms | ActiveRecord: 0.3ms | Allocations: 4748)
+
+
+Started GET "/service_requests" for ::1 at 2024-01-15 11:26:58 +0530
+Processing by ServiceRequestsController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering service_requests/index.html.erb within layouts/application
+  [1m[36mServiceRequest Load (0.1ms)[0m  [1m[34mSELECT "service_requests".* FROM "service_requests" WHERE "service_requests"."unique_id" = ?[0m  [["unique_id", 22190]]
+  ↳ app/views/service_requests/index.html.erb:6
+  Rendered service_requests/_service_request.html.erb (Duration: 0.2ms | Allocations: 34)
+  Rendered service_requests/index.html.erb within layouts/application (Duration: 2.0ms | Allocations: 780)
+  Rendered layout layouts/application.html.erb (Duration: 11.4ms | Allocations: 3157)
+Completed 200 OK in 17ms (Views: 11.8ms | ActiveRecord: 0.5ms | Allocations: 4722)
+
+
+Started GET "/" for ::1 at 2024-01-15 11:27:05 +0530
+Processing by StaticPagesController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?[0m  [["id", 11], ["LIMIT", 1]]
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/index.html.erb within layouts/application
+  [1m[36mRole Load (0.8ms)[0m  [1m[34mSELECT "roles".* FROM "roles" INNER JOIN "users_roles" ON "roles"."id" = "users_roles"."role_id" WHERE "users_roles"."user_id" = ? AND (((roles.name = 'Admin') AND (roles.resource_type IS NULL) AND (roles.resource_id IS NULL)))[0m  [["user_id", 11]]
+  ↳ app/views/static_pages/index.html.erb:18
+  Rendered static_pages/index.html.erb within layouts/application (Duration: 9.5ms | Allocations: 1587)
+  Rendered layout layouts/application.html.erb (Duration: 16.2ms | Allocations: 3973)
+Completed 200 OK in 24ms (Views: 16.7ms | ActiveRecord: 1.0ms | Allocations: 5488)
+
+
